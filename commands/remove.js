@@ -1,7 +1,7 @@
 import { SlashCommandBuilder } from "discord.js";
 
 export default {
-    data: new SlashCommandBuilder().setName('check').setDescription('When <server> [region] is available, notified.')
+    data: new SlashCommandBuilder().setName('remove').setDescription('Remove checker.')
         .addStringOption(option => option.setName('hook').setDescription('Web hook url.').setRequired(true))
         .addStringOption(option => option.setName('server').setDescription('Target server.').setRequired(true))
         .addStringOption(option => option.setName('region').setDescription('Target region.')),
@@ -12,8 +12,8 @@ export default {
         const webhook = interaction.options.getString('hook');
         const server = interaction.options.getString('server')?.toLowerCase();
         const region = interaction.options.getString('region')?.toLowerCase();
-        this.checker.update(webhook, server, region);
-        console.log(`Availability check added: ${webhook}[${server}/${region}]`);
-        await interaction.reply('Added!');
+        this.checker.remove(webhook, server, region);
+        console.log(`Availability check removed: ${webhook}[${server}/${region}]`);
+        await interaction.reply('Removed!');
     }
 };

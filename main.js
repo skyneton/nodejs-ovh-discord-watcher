@@ -1,17 +1,24 @@
-import { Client, Collection, Events, GatewayIntentBits } from 'discord.js';
+import { Client, Collection, Events, GatewayIntentBits, REST, Routes, MessageFlags } from 'discord.js';
 import { loadCommand, getParams } from './utils.js'
 import { Checker } from './checker.js';
 
-const { token, interval } = await getParams(process.argv);
+const { token, clientId, guildId, interval } = await getParams(process.argv);
 
 const client = new Client({ intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildWebhooks] });
 client.commands = new Collection();
 const checker = new Checker();
 
-await loadCommand('commands', checker);
-console.log('Command load finished.');
+const commands = [];
+await loadCommand('commands', checker, client.commands, commands);
 
-client.on(Events.ClientReady, () => { console.log('Discord Bot running!'); });
+const rest = new REST().setToken(token);
+await rest.put(
+    Routes.applicationGuildCommands(clientId, guildId),
+    { body: commands }
+);
+console.log('Commands registered.');
+
+client.on(Events.ClientReady, async () => { console.log('Discord Bot running!'); });
 
 client.on(Events.InteractionCreate, async interaction => {
     if (!interaction.isChatInputCommand()) return;
