@@ -1,14 +1,14 @@
-import REGION from "./region.json";
+import REGION from "./region.json" with { type: "json" };
 import { writeFile, existsSync } from "fs";
-import { getAvailable } from "./utils";
+import { getAvailable } from "./utils.js";
 import { WebhookClient } from "discord.js";
-import SERVERS from "./server.json";
+import SERVERS from "./server.json" with { type: "json" };;
 
 export class Checker {
     id = 0;
     data = {};
     constructor() {
-        load();
+        this.load();
     }
 
     sendChannels(server, webhooks, regions) {

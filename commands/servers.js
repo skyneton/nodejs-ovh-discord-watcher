@@ -1,5 +1,5 @@
 import { SlashCommandBuilder } from "discord.js";
-import SERVERS from "../server.json";
+import SERVERS from "../server.json" with { type: "json" };;
 
 let info = "";
 for (const code in SERVERS) {

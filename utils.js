@@ -1,6 +1,6 @@
 import { readdirSync, lstatSync } from 'fs';
 import { join } from 'path';
-import { createInterface } from 'readline';
+import { createInterface } from 'readline/promises';
 import { STATUS_API } from './config.js';
 import REGION from './commands/region.js';
 
@@ -13,7 +13,6 @@ export async function loadCommand(dir, checker) {
         }
         if (!file.endsWith('.js')) continue;
         const command = await import(`./${p}`);
-        console.log(command);
         if ('data' in command && 'execute' in command) {
             client.commands.set(command.data.name, command);
         }
@@ -23,12 +22,18 @@ export async function loadCommand(dir, checker) {
 }
 
 export async function getParams(args) {
-    let token = args[0];
-    let interval = args[1];
+    let token = null;
+    let interval = null;
+    for (let i = 0; i < args.length; i++) {
+        if (args[i].toLowerCase() == "--token")
+            token = args[i + 1];
+        else if (args[i].toLowerCase() == "--interval")
+            interval = parseInt(args[i + 1]);
+    }
     if (!token || !interval) {
         const rl = createInterface({ input: process.stdin, output: process.stdout });
         if (!token) {
-            const reqToken = rl.question("discord token: ");
+            const reqToken = await rl.question("discord token: ");
             if (!reqToken) {
                 console.error("Please input your token.");
                 process.exit(1);
@@ -36,7 +41,7 @@ export async function getParams(args) {
             token = reqToken;
         }
         if (!interval) {
-            const reqInterval = rl.question("checking interval seconds(default: 100): ");
+            const reqInterval = await rl.question("checking interval seconds(default: 100): ");
             if (!reqInterval)
                 interval = 100;
             else

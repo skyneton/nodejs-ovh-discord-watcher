@@ -1,6 +1,6 @@
 import { SlashCommandBuilder } from "discord.js";
 import { getStatus } from "../utils";
-import SERVERS from "../server.json";
+import SERVERS from "../server.json" with { type: "json" };;
 
 export default {
     data: new SlashCommandBuilder().setName('status').setDescription('Current availability.')

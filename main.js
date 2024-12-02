@@ -2,13 +2,13 @@ import { Client, Collection, Events, GatewayIntentBits } from 'discord.js';
 import { loadCommand, getParams } from './utils.js'
 import { Checker } from './checker.js';
 
-const { token, interval } = getParams(process.argv);
+const { token, interval } = await getParams(process.argv);
 
 const client = new Client({ intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildWebhooks] });
 client.commands = new Collection();
 const checker = new Checker();
 
-loadCommand('commands', checker);
+await loadCommand('commands', checker);
 console.log('Command load finished.');
 
 client.on(Events.ClientReady, () => { console.log('Discord Bot running!'); });

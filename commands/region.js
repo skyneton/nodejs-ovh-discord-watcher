@@ -1,5 +1,5 @@
 import { SlashCommandBuilder } from "discord.js";
-import region from "../region.json";
+import region from "../region.json" with { type: "json" };
 
 let info = ""
 for (const key in region) {

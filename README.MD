@@ -1,5 +1,5 @@
 # Start
-```node main.js [discord token] [interval(ms)]```
+```node main.js --token [discord token] --interval [interval(seconds)]```
 # Commands
 - ```/help``` - Show commands.
 - ```/region``` - Show region list.
