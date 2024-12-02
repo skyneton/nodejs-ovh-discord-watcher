@@ -74,7 +74,7 @@ export async function getParams(args) {
     return { token, clientId, guildId, interval };
 }
 
-export async function getKimsufiCode(server) {
+export function getKimsufiCode(server) {
     return server in KIMSUFI ? KIMSUFI[server] : server;
 }
 
