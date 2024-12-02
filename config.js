@@ -1,0 +1,1 @@
+export default STATUS_API = "https://eu.api.ovh.com/v1/dedicated/server/datacenter/availabilities?";

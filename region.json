@@ -1,0 +1,14 @@
+{
+    "eur": { "description": "Europe - North America" },
+    "gra": { "description": "Europe(France-Granvelines)" },
+    "sbg": { "description": "Europe(France-Strasbourg)" },
+    "rbx": { "description": "Europe(France-Roubaix)" },
+    "bhs": { "description": "North America(Canada-Beauharnois)" },
+    "waw": { "description": "Europe(Poland-Warsaw)" },
+    "fra": { "description": "Europe(Germany-Limburg)" },
+    "lon": { "description": "Europe(U.K.-London)" },
+    "sgp": { "description": "Asia(Singapore)" },
+    "syd": { "description": "Oceania(Australia-Sydney)" },
+    "hill": { "description": "Vint Hill" },
+    "vin": { "description": "Vint Hill" }
+}

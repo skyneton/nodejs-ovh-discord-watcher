@@ -1,0 +1,15 @@
+{
+  "name": "ovh-discord-watcher",
+  "version": "1.0.0",
+  "description": "OVH cloud availability checking bot",
+  "main": "main.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "skyneton",
+  "license": "MIT",
+  "dependencies": {
+    "discord.js": "^14.16.3"
+  }
+}
