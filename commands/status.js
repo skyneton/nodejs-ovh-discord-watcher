@@ -1,5 +1,5 @@
 import { SlashCommandBuilder } from "discord.js";
-import { getStatus } from "../utils.js";
+import { getStatus, getKimsufiCode } from "../utils.js";
 import SERVERS from "../server.json" with { type: "json" };;
 
 export default {
@@ -9,7 +9,7 @@ export default {
     async execute(interaction) {
         const server = interaction.options.getString('server')?.toLowerCase();
         const region = interaction.options.getString('region')?.toLowerCase();
-        const data = await getStatus(server, region);
+        const data = await getStatus(getKimsufiCode(server), region);
         if (data.length == 0)
             return await interaction.reply(`Cannot found server or region.`);
 

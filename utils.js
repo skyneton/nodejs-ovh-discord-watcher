@@ -74,10 +74,11 @@ export async function getParams(args) {
     return { token, clientId, guildId, interval };
 }
 
-export async function getStatus(server, region) {
-    if (server in KIMSUFI)
-        server = KIMSUFI[server];
+export async function getKimsufiCode(server) {
+    return server in KIMSUFI ? KIMSUFI[server] : server;
+}
 
+export async function getStatus(server, region) {
     let url = STATUS_API;
     if (!region || region == 'eur')
         url += `planCode=${server}`;

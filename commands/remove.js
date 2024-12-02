@@ -1,4 +1,5 @@
 import { SlashCommandBuilder } from "discord.js";
+import { getKimsufiCode } from "../utils.js";
 
 export default {
     data: new SlashCommandBuilder().setName('remove').setDescription('Remove checker.')
@@ -12,7 +13,7 @@ export default {
         const webhook = interaction.options.getString('hook');
         const server = interaction.options.getString('server')?.toLowerCase();
         const region = interaction.options.getString('region')?.toLowerCase();
-        this.checker.remove(webhook, server, region);
+        this.checker.remove(webhook, getKimsufiCode(server), region);
         console.log(`Availability check removed: ${webhook}[${server}/${region}]`);
         await interaction.reply('Removed!');
     }
