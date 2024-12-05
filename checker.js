@@ -79,7 +79,7 @@ export class Checker {
     start(interval) {
         this.id = setInterval(async () => {
             try {
-                await work();
+                await this.work();
             } catch (e) {
                 console.error(e);
             }
