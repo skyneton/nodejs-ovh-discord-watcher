@@ -81,7 +81,7 @@ export class Checker {
             try {
                 await this.work();
             } catch (e) {
-                console.error(e);
+                console.error(Date.now(), e);
             }
         }, interval * 1000);
     }
@@ -106,7 +106,7 @@ export class Checker {
         const raw = {};
         for (const serverKey in this.data) {
             const server = this.data[serverKey];
-            if (Object.keys(server) == 0) continue;
+            if (Object.keys(server).length == 0) continue;
             raw[serverKey] = {};
             for (const regionKey in server) {
                 const region = server[regionKey];
